@@ -4,11 +4,16 @@ import "./app/styles/index.scss";
 import { App } from "./app/App";
 import { ThemeProvider } from "./app/providers/ThemeProbider";
 
+import "./shared/config/i18n/i18n";
+import { ErrorBoundary } from "./app/providers/ErrorBoundaries";
+
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
-  </BrowserRouter>
+  <ErrorBoundary>
+    <BrowserRouter>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    </BrowserRouter>
+  </ErrorBoundary>
 );

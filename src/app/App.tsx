@@ -2,15 +2,21 @@ import { useTheme } from "./providers/ThemeProbider/lib/useTheme";
 import { classNames } from "../shared/classNames/classNames";
 import { AppRouter } from "./providers/router";
 import { Navbar } from "../widgets/Navbar";
+import { Suspense } from "react";
+import { Sidebar } from "../widgets/Sidebar";
 
 export const App = () => {
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div className={classNames("app", {}, [theme])}>
-      <Navbar />
-      <AppRouter />
-      <button onClick={toggleTheme}>Toggle Theme</button>
+      <Suspense>
+        <Navbar />
+        <div className="content-page">
+          <Sidebar />
+          <AppRouter />
+        </div>
+      </Suspense>
     </div>
   );
 };
